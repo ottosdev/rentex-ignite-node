@@ -1,13 +1,13 @@
+import { container } from 'tsyringe';
 import { Request, Response } from 'express';
 import { ImportCategoryUseCase } from './ImportCategoryUseCase';
 // stream deixa ler o arquivo por partes
 
-
 export class ImportCategoryController {
-    constructor(private importCategoryUseCase: ImportCategoryUseCase) {}
-    handle(request: Request, response: Response) {
+  async  handle(request: Request, response: Response): Promise<Response> {
         const { file } = request;
-        this.importCategoryUseCase.execute(file);
+        const importCategoryUseCase = container.resolve(ImportCategoryUseCase);
+        await importCategoryUseCase.execute(file);
         return response.send();
     }
 }
