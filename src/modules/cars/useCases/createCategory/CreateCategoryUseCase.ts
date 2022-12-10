@@ -1,3 +1,4 @@
+import { AppError } from './../../../../errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
 
@@ -19,7 +20,7 @@ export class CreateCategoryUseCase {
         if (categoryAlreadyExists) {
             // o service nao tem acesso ao responde.
             // para lancar um error precisamos instanciar o error aqui para o responde capturar;
-            throw new Error('Category alredy exists');
+            throw new AppError('Category alredy exists');
         }
 
         await this.categoriesRepository.create({ name, description });

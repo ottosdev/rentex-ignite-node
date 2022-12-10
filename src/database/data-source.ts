@@ -21,3 +21,5 @@ export function createConnection(
 ): Promise<DataSource> {
   return AppDataSource.setOptions({ host }).initialize()
 }
+
+// // "createMigration": "npm run typeorm migration:create -n 'migration name'"
